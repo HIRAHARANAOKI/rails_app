@@ -59,3 +59,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap-sass', '3.4.1'
 # rails testの色付け
 gem 'minitest-reporters'
+# パスワードのハッシュ化
+gem 'bcrypt', '3.1.13'
