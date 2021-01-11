@@ -15,8 +15,15 @@
 <%= render 'layouts/header' %>
 
 <div class="container">
+<!--  flashを表示-->
+  <% flash.each do |message_type, message| %>
+    <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+  <% end %>
   <%= yield %>
   <%= render 'layouts/footer' %>
+
+<!--  developerモードで状態を表示できるので便利-->
+<%= debug(params) if Rails.env.development? %>
 </div>
 </body>
 </html>
