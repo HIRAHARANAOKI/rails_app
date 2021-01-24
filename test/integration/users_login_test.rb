@@ -1,5 +1,4 @@
-require "test_helper"
-
+require 'test_helper'
 
 class UsersLoginTest < ActionDispatch::IntegrationTest
 
@@ -30,6 +29,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", login_path, count: 0
     assert_select "a[href=?]", logout_path
     assert_select "a[href=?]", user_path(@user)
+    # 2番目のウィンドウでログアウトをクリックするユーザーをシミュレートする
     delete logout_path
     assert_not is_logged_in?
     assert_redirected_to root_url
@@ -41,15 +41,15 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
   test "login with remembering" do
     log_in_as(@user, remember_me: '1')
-    assert_not_empty cookies[:remember_token]
+    assert_not_empty cookies['remember_token']
   end
 
   test "login without remembering" do
-    # cookieを保存してログイン
+    # クッキーを保存してログイン
     log_in_as(@user, remember_me: '1')
     delete logout_path
-    # cookieを削除してログイン
+    # クッキーを削除してログイン
     log_in_as(@user, remember_me: '0')
-    assert_empty cookies[:remember_token]
+    assert_empty cookies['remember_token']
   end
 end
